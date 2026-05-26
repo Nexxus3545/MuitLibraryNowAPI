@@ -1,0 +1,6 @@
+legacy_id,book_title,writer,category,year_published,circulation_status
+L001,The Alchemist,Paulo Coelho,Fiction,1988,available
+L002,Introduction to Algorithms,Thomas H. Cormen,Computer Science,2009,checked_out
+L003,Atomic Habits,James Clear,Self Help,2018,available
+L004,Clean Code,Robert C. Martin,Programming,2008,borrowed
+L005,Things Fall Apart,Chinua Achebe,Classic,1958,available

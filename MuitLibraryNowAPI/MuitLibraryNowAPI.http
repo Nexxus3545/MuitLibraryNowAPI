@@ -1,0 +1,6 @@
+@OleleLibraryNowAPI_HostAddress = http://localhost:5095
+
+GET {{OleleLibraryNowAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
