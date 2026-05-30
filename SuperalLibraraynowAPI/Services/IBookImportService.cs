@@ -1,6 +1,6 @@
-using OleleLibraryNowAPI.Models;
+using SuperalLibraraynowAPI.Models;
 
-namespace OleleLibraryNowAPI.Services
+namespace SuperalLibraraynowAPI.Services
 {
     public interface IBookImportService
     {

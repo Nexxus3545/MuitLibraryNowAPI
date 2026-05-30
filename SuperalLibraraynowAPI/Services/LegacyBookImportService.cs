@@ -1,16 +1,17 @@
+using System.Globalization;
 using Microsoft.VisualBasic.FileIO;
-using OleleLibraryNowAPI.Models;
-using OleleLibraryNowAPI.Repositories;
+using SuperalLibraraynowAPI.Models;
+using SuperalLibraraynowAPI.Repositories;
 
-namespace OleleLibraryNowAPI.Services
+namespace SuperalLibraraynowAPI.Services
 {
     public class LegacyBookImportService : IBookImportService
     {
         private static readonly string[] TitleColumns = ["title", "book_title", "book_name", "name"];
         private static readonly string[] AuthorColumns = ["author", "writer", "book_author", "author_name"];
-        private static readonly string[] GenreColumns = ["genre", "category", "section", "shelf_category"];
-        private static readonly string[] YearColumns = ["publishedyear", "published_year", "year_published", "publication_year", "year"];
-        private static readonly string[] AvailabilityColumns = ["available", "availability", "status", "circulation_status"];
+        private static readonly string[] GenreColumns = ["genre", "category", "section", "shelf_category", "book_type"];
+        private static readonly string[] YearColumns = ["publishedyear", "published_year", "year_published", "publication_year", "year", "year_pub"];
+        private static readonly string[] AvailabilityColumns = ["available", "availability", "status", "circulation_status", "is_available"];
 
         private readonly IConfiguration _configuration;
         private readonly IWebHostEnvironment _environment;
@@ -52,7 +53,10 @@ namespace OleleLibraryNowAPI.Services
                 warnings.Add($"Line {row.LineNumber}: {warning}");
             }
 
-            _bookRepository.ReplaceAll(transformedBooks);
+            foreach (var transformedBook in transformedBooks)
+            {
+                _bookRepository.Add(transformedBook);
+            }
 
             var summary = new BookImportSummary
             {
@@ -161,17 +165,26 @@ namespace OleleLibraryNowAPI.Services
                 return false;
             }
 
+            title = ToTitleCase(title);
+
             var author = GetFirstValue(values, AuthorColumns);
             if (string.IsNullOrWhiteSpace(author))
             {
-                warning = "missing author";
-                return false;
+                author = string.Empty;
+            }
+            else
+            {
+                author = ToTitleCase(author);
             }
 
             var genre = GetFirstValue(values, GenreColumns);
             if (string.IsNullOrWhiteSpace(genre))
             {
                 genre = "General";
+            }
+            else
+            {
+                genre = ToTitleCase(genre);
             }
 
             var yearText = GetFirstValue(values, YearColumns);
@@ -195,6 +208,11 @@ namespace OleleLibraryNowAPI.Services
 
             warning = string.Empty;
             return true;
+        }
+
+        private static string ToTitleCase(string value)
+        {
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value.Trim().ToLowerInvariant());
         }
 
         private static string? GetFirstValue(IReadOnlyDictionary<string, string> values, IEnumerable<string> aliases)

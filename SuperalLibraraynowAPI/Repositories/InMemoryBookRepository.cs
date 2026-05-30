@@ -1,12 +1,32 @@
-using OleleLibraryNowAPI.Models;
+using SuperalLibraraynowAPI.Models;
 
-namespace OleleLibraryNowAPI.Repositories
+namespace SuperalLibraraynowAPI.Repositories
 {
     public class InMemoryBookRepository : IBookRepository
     {
-        private readonly List<Book> _books = [];
+        private readonly List<Book> _books =
+        [
+            new Book
+            {
+                Id = 1,
+                Title = "Crime and Punishment",
+                Author = "Fyodor Dostoevsky",
+                Genre = "Drama",
+                Available = true,
+                PublishedYear = 1866
+            },
+            new Book
+            {
+                Id = 2,
+                Title = "Lord Of The Rings",
+                Author = "J.R.R Tolkien",
+                Genre = "Fantasy",
+                Available = true,
+                PublishedYear = 1954
+            }
+        ];
         private readonly object _syncRoot = new();
-        private int _nextId = 1;
+        private int _nextId = 3;
 
         public IReadOnlyList<Book> GetAll()
         {

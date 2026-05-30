@@ -1,4 +1,4 @@
-namespace MuitLibraryNowAPI
+namespace SuperalLibraraynowAPI
 {
     public class WeatherForecast
     {

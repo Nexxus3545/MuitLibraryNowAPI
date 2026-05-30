@@ -1,6 +1,6 @@
-using OleleLibraryNowAPI.Models;
+using SuperalLibraraynowAPI.Models;
 
-namespace OleleLibraryNowAPI.Repositories
+namespace SuperalLibraraynowAPI.Repositories
 {
     public interface IBookRepository
     {

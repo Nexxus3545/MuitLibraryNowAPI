@@ -1,5 +1,5 @@
-using OleleLibraryNowAPI.Repositories;
-using OleleLibraryNowAPI.Services;
+using SuperalLibraraynowAPI.Repositories;
+using SuperalLibraraynowAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +23,7 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 app.MapControllers();
 
-if (app.Configuration.GetValue("ETL:AutoImportOnStartup", true))
+if (app.Configuration.GetValue("ETL:AutoImportOnStartup", false))
 {
     using var scope = app.Services.CreateScope();
     var importer = scope.ServiceProvider.GetRequiredService<IBookImportService>();

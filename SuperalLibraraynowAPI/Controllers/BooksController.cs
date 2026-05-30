@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using OleleLibraryNowAPI.Models;
-using OleleLibraryNowAPI.Repositories;
-using OleleLibraryNowAPI.Services;
+using SuperalLibraraynowAPI.Models;
+using SuperalLibraraynowAPI.Repositories;
+using SuperalLibraraynowAPI.Services;
 
-namespace OleleLibraryNowAPI.Controllers
+namespace SuperalLibraraynowAPI.Controllers
 {
     [Route("api/v1/books")]
     [ApiController]
@@ -27,7 +27,7 @@ namespace OleleLibraryNowAPI.Controllers
             {
                 status = "success",
                 data = books,
-                message = "books retrieved"
+                message = "Books retrieved"
             });
         } 
         [HttpGet("{id}")]
