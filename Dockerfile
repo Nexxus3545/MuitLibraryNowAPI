@@ -6,10 +6,10 @@ ENV ASPNETCORE_URLS=http://+:8080
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY . .
-RUN dotnet restore "SuperalLibraryNowApi/SuperalLibraryNowApi.csproj"
-RUN dotnet publish  "SuperalLibraryNowApi/SuperalLibraryNowApi.csproj" -c Release -o /app/out
+RUN dotnet restore "SanorjoLibraryNowAPI/SanorjoLibraryNowAPI.csproj"
+RUN dotnet publish  "SanorjoLibraryNowAPI/SanorjoLibraryNowAPI.csproj" -c Release -o /app/out
 
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/out .
-ENTRYPOINT ["dotnet", "SuperalLibraryNowApi.dll"]
+ENTRYPOINT ["dotnet", "SanorjoLibraryNowAPI.dll"]

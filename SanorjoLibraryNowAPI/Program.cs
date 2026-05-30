@@ -1,5 +1,5 @@
-using SuperalLibraryNowApi.Repositories;
-using SuperalLibraryNowApi.Services;
+using SanorjoLibraryNowAPI.Repositories;
+using SanorjoLibraryNowAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +21,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
+app.MapGet("/", () => Results.Redirect("/api/v1/books"));
 app.MapControllers();
 
 if (app.Configuration.GetValue("ETL:AutoImportOnStartup", false))

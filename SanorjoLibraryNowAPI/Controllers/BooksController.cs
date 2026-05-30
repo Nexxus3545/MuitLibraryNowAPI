@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
-using SuperalLibraryNowApi.Models;
-using SuperalLibraryNowApi.Repositories;
-using SuperalLibraryNowApi.Services;
+using SanorjoLibraryNowAPI.Models;
+using SanorjoLibraryNowAPI.Repositories;
+using SanorjoLibraryNowAPI.Services;
 
-namespace SuperalLibraryNowApi.Controllers
+namespace SanorjoLibraryNowAPI.Controllers
 {
     [Route("api/v1/books")]
     [ApiController]

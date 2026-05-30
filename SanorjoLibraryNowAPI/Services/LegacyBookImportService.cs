@@ -1,9 +1,9 @@
 using System.Globalization;
 using Microsoft.VisualBasic.FileIO;
-using SuperalLibraryNowApi.Models;
-using SuperalLibraryNowApi.Repositories;
+using SanorjoLibraryNowAPI.Models;
+using SanorjoLibraryNowAPI.Repositories;
 
-namespace SuperalLibraryNowApi.Services
+namespace SanorjoLibraryNowAPI.Services
 {
     public class LegacyBookImportService : IBookImportService
     {

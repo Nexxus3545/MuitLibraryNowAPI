@@ -1,4 +1,4 @@
-namespace SuperalLibraryNowApi.Models
+namespace SanorjoLibraryNowAPI.Models
 {
     public class BookImportSummary
     {

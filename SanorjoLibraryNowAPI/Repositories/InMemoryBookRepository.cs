@@ -1,6 +1,6 @@
-using SuperalLibraryNowApi.Models;
+using SanorjoLibraryNowAPI.Models;
 
-namespace SuperalLibraryNowApi.Repositories
+namespace SanorjoLibraryNowAPI.Repositories
 {
     public class InMemoryBookRepository : IBookRepository
     {

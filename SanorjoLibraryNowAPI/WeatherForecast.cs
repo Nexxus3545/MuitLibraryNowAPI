@@ -1,4 +1,4 @@
-namespace SuperalLibraryNowApi
+namespace SanorjoLibraryNowAPI
 {
     public class WeatherForecast
     {

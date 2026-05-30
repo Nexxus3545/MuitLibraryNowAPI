@@ -1,4 +1,0 @@
-<Solution>
-  <Project Path="SuperalLibraryNowApi/SuperalLibraryNowApi.csproj" />
-  <Project Path="SuperalLibraryETL/SuperalLibraryETL.csproj" />
-</Solution>

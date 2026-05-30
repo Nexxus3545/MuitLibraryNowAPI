@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Net;
 using System.Text;
 using System.Text.Json;
 
@@ -28,8 +29,12 @@ foreach (var book in transformed)
 
 using var client = new HttpClient();
 client.DefaultRequestVersion = new Version(1, 1);
+client.Timeout = TimeSpan.FromSeconds(5);
 client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
 client.BaseAddress = new Uri(Environment.GetEnvironmentVariable("API_BASE_URL") ?? "http://localhost:8080/");
+
+Console.WriteLine($"Waiting for API at {client.BaseAddress}");
+await WaitForApiAsync(client, TimeSpan.FromSeconds(30));
 
 foreach (var book in transformed)
 {
@@ -42,6 +47,38 @@ foreach (var book in transformed)
 static string ToTitleCase(string value)
 {
     return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(value.Trim().ToLowerInvariant());
+}
+
+static async Task WaitForApiAsync(HttpClient client, TimeSpan timeout)
+{
+    var deadline = DateTimeOffset.UtcNow + timeout;
+    Exception? lastException = null;
+
+    while (DateTimeOffset.UtcNow < deadline)
+    {
+        try
+        {
+            using var response = await client.GetAsync("api/v1/books");
+            if (response.IsSuccessStatusCode)
+            {
+                return;
+            }
+        }
+        catch (HttpRequestException exception)
+        {
+            lastException = exception;
+        }
+        catch (TaskCanceledException exception)
+        {
+            lastException = exception;
+        }
+
+        await Task.Delay(1000);
+    }
+
+    throw new HttpRequestException(
+        $"Unable to reach the API at {client.BaseAddress} after waiting {timeout.TotalSeconds:F0} seconds.",
+        lastException);
 }
 
 class TransformedBook

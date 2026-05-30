@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace SuperalLibraryNowApi.Controllers
+namespace SanorjoLibraryNowAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
