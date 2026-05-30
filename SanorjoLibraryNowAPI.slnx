@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="SanorjoLibraryNowAPI/SanorjoLibraryNowAPI.csproj" />
+  <Project Path="SanorjoLibraryAPI/SanorjoLibraryAPI.csproj" />
   <Project Path="SanorjoLibraryETL/SanorjoLibraryETL.csproj" />
 </Solution>
